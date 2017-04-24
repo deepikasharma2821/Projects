@@ -1,0 +1,128 @@
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+
+.animate-hide {
+ -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+ -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+-o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+line-height:200px;
+opacity:1;
+padding:200px;
+border:none;
+background:white;
+position: absolute;
+left: 0;
+}
+
+.details_in{
+  position: relative;
+  width: 90%;
+  left:0em;
+  transition: all ease-in-out 0.5s;
+}
+
+.details_out{
+  position: relative;
+  left:-120em;
+  transition: all ease-in-out 0.5s;
+}
+
+.animate-hide.ng-hide {
+  left: -100%;
+  opacity:0;
+  
+}
+
+div.tab {
+    overflow: hidden;
+    border-bottom-color:#3b5998;
+    background-color: white;
+    text-align: center;
+    
+  }
+  .gold.glyphicon-star
+  {
+    color:gold;
+  }
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 15px;
+    width: 200px;
+   
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #3b5998;
+    color:white;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #3b5998;
+    color:white;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+   
+    border-top: none;
+}
+
+.yellow{
+  color:gold;
+}
+
+
+
+.nav-pills 
+{
+  background-color: white !important;
+ 
+  border-collapse: collapse !important;   
+}
+
+.nav-pills.nav-justified 
+{
+  border-bottom: inherit;
+  border-collapse: collapse !important;
+}
+.nav-pills>li.active>a
+ {
+  background-color: #3b5998 !important;
+  color: white !important;
+ }
+.nav-pills>li>a 
+{
+  color: black !important;
+}
+.nav-pils>li>a:hover
+ {
+  border-color: white !important;
+  background-color: inherit !important;
+}
+.nav-pills>li.active>a:hover 
+{
+  background-color: #3b5998 !important;
+}
+
+/*media queries
+*/
+@media (max-width: 800px) {
+  .nav-tabs > li > a {
+    line-height: 0.01em !important;
+  }
+  
+}
