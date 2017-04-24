@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myFirstAngularApp">
+<head>
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>   
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+
+
+
+<!-- Angular JS -->
+<!-- <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script> -->
+<!-- dirPagination -->
+ <!--<script src = "dirPagination.js"></script> -->
+<!-- Javascript file -->  
+<script src = "javascriptfile.js"></script>
+
+<!-- Local Storage -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" 
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" >
+
+<!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="mystylesheet.css">
+
+
+
+
+<script type="text/javascript">
+//document.getElementById("defaultopen").click();
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active"; 
+}
+// function yellow(Object)
+// {
+//   var starClass =  Object.childNodes[1].className; 
+//   if(starClass=="glyphicon glyphicon-star gold")
+//   {
+//     Object.childNodes[1].className = "glyphicon glyphicon-star gold";
+
+//   }
+
+
+//   console.log(Object);
+//   var starClass =  Object.childNodes[1].className;   //document.getElementById("favStar_Users").children[0].className;
+// //$('#favStar_Users').child.attr('class');
+// Object.childNodes[1].className = "glyphicon glyphicon-star gold";
+// console.log("blah balah ala");
+// //console.log(starClass);
+// //document.getElementById("favStar_Users").children[0].className = "glyphicon glyphicon-star gold";
+// //starClass="glyphicon glyphicon-star gold";
+// //console.log(starClass);
+// }
+/*function hide()
+{
+  $('#form').trigger("reset");
+  $('#nextandprev').trigger("reset");*/
+
+  /*document.getElementById('form').reset;
+  document.getElementById("input_text").setAttribute("value", "");
+  document.getElementById("input_text").value ='';*/
+ /* document.getElementById('table1').style.visibility="hidden";
+  document.getElementById('table2').style.visibility="hidden";
+  document.getElementById('table3').style.visibility="hidden";
+  document.getElementById('table4').style.visibility="hidden";
+  document.getElementById('table5').style.visibility="hidden";*/
+  //document.getElementById('nextandprev').style.visibility="hidden";
+ // document.getElementById('invisiblediv').style.visibility="hidden";
+/*}
+*/
+/*function shownext()
+{
+  document.getElementById('nextandprev').style.visibility="visible";
+  
+}*/
+
+/*function prog_function() {
+    setTimeout(function(){ document.getElementById('progress_bar').visibility="visible";}, 3000);
+}*/
+
+
+</script>
+<meta charset="utf-8"> 
+<title>FB Search</title>
+</head>
+<body ng-controller="myController" >
+<!--<p>{{userData}}</p>-->
+
+<form class="form-horizontal input-lg" id="form" style="color: #3b5998;font-family: sans-serif;background: whitesmoke">
+
+<div class="row">
+
+<div class="col-md-3" >FB Search</div>
+
+<div class="col-md-8" style="background: whitesmoke">
+<input id="input_text" name="input_text" type="text" required="required" oninvalid="this.setCustomValidity('This field cannot be left empty')" oninput="setCustomValidity('')" ng-model="input_text" style="width: 40%" placeholder="type something..">
+<!--<input type="image" src="fbsearchicon.png" width="80px" height="30px" style="margin-left: -5px;margin-bottom: -10px">-->
+<button type="submit" name="submit" id="submit" name="submit" class="btn btn-default" aria-label="Left Align" style="background-color: #3b5998;margin-left: -7px; border-radius: 0px;" onclick="openCity(event, 'Users')" ng-click="retrieveData(); legShow();"" >
+  <span class="glyphicon glyphicon-search" style="color: white;width: 40px"></span>
+</button>
+
+<!--<input type="submit" name="submit" value="submit" id="submit" ng-click="retrieveData()"> -->
+<input type="reset" value="Clear" class="clear"  ng-click="pagedetailsclear();" style="height: 30px;color:#3b5998;font-size: 13px;margin-bottom: -2px;background-color: white;border-color: #3b5998">
+</div>
+
+</div>
+
+</form>
+
+
+</div>
+
+  <!-- <div class="tab container-fluid " style="border-bottom:thin solid #3b5998" >
+  <button class="tablinks" onclick="openCity(event, 'Users')" ng-click="retrieveData(); legShow();" id="user" >Users</button>
+  <button class="tablinks" onclick="openCity(event, 'Pages')" ng-click="retrievePageData(); pageShow()" id="page">Pages</button>
+  <button class="tablinks" onclick="openCity(event, 'Events')" ng-click="retrieveEventData(); eventShow()" id="event">Events</button>
+  <button class="tablinks" onclick="openCity(event, 'Places')" ng-click="retrievePlaceData(); placeShow()">Places</button>
+  <button class="tablinks" onclick="openCity(event, 'Groups')" ng-click="retrieveGroupData(); groupShow()">Groups</button>
+  <button class="tablinks" onclick="openCity(event, 'Favorites')" ng-click="getfromstorage();favShow()">Favorites</button>
+</div>   -->
+ 
+<!-- <nav class="navbar navbar-toggleable-md" style="background: whitesmoke;">
+ 
+    
+   <div class="container col-md-12">
+      <ul class="nav nav-pill nav-justified">
+        <li><a  onclick="openCity(event, 'Users')" ng-click="retrieveData(); legShow();"> Users<span class="sr-only">(current)</span></a></li>
+        <li><a onclick="openCity(event, 'Pages')" ng-click="retrievePageData(); pageShow()">Pages</a></li>
+        <li><a onclick="openCity(event, 'Events')" ng-click="retrieveEventData(); eventShow()">Events</a></li>
+        <li><a onclick="openCity(event, 'Places')" ng-click="retrievePlaceData(); placeShow()">Places</a></li>
+        <li><a onclick="openCity(event, 'Groups')" ng-click="retrieveGroupData(); groupShow()">Groups</a></li>
+        <li><a onclick="openCity(event, 'Favorites')" ng-click="getfromstorage();favShow()">Favorites</a></li>
+      </ul>
+  
+      
+      
+      </div>
+      </nav> -->
+ <nav class="navbar navbar-toggleable-md">
+ <div class="navbar-header col-md-12">
+ <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#ToggleID1!" data-toggle="collapse" type="button"></button></div>
+ <div class="container-fluid col-md-12">
+ <ul class="nav nav-pills nav-justified">
+ <li class="active">
+  <a  onclick="openCity(event, 'Users')" ng-click="retrieveData(); legShow();" data-toggle="pill">Users</a></li>
+  <li>
+  <a onclick="openCity(event, 'Pages')" ng-click="retrievePageData(); pageShow()" data-toggle="pill">Pages</a></li>
+  <li>
+ <a onclick="openCity(event, 'Events')" ng-click="retrieveEventData(); eventShow()" data-toggle="pill">Events</a> </li>
+ <li>
+ <a onclick="openCity(event, 'Places')" ng-click="retrievePlaceData(); placeShow()" data-toggle="pill">Places</a> </li>
+<li>
+<a onclick="openCity(event, 'Groups')" ng-click="retrieveGroupData(); groupShow()" data-toggle="pill">Groups</a> </li>
+ <li>
+  <a onclick="openCity(event, 'Favorites')" ng-click="getfromstorage1();favShow()" data-toggle="pill">Favorites</a></li>
+  </ul>
+  <hr style="border-color: #3b5998;margin-top: 0px "/>
+  </div>
+ </nav>
+
+
+
+
+
+
+
+
+ <div class="container" id="progress_bar" ng-show="prog_bar">
+<div class="progress" style="margin-top: 250px">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
+    <span class="sr-only">45% Complete</span>
+  </div>
+</div>
+</div>
+ 
+
+
+
+<!-- <div class="container-fluid">
+
+
+<nav class="navbar navbar-default container-fluid col-md-12" style="background-color:white;border-bottom-color:#3b5998;">
+  
+    <div class="row">
+    
+    <ul class="nav navbar-nav">
+      <li class="active"><a onclick="openCity(event, 'Users')" ng-click="retrieveData(); legShow()" id="user">Users</a></li>
+      <li><a href="#">Pages</a></li>
+      <li><a href="#">Places</a></li>
+      <li><a href="#">Groups</a></li>
+      <li><a href="#">Events</a></li>
+    </ul>
+    
+  </div>
+  
+</nav> 
+</div> -->
+
+<!--users-->
+<div id="Users" class="tabcontent" ng-model="userdata" ng-show="state.Users_table;alltables;" ng-hide="something" >
+  
+  <div class="container-fluid">   
+  <div id = "Users_table"  >  
+  <div class="table-responsive">     
+  <table id ="table1" class="table">
+    <thead> 
+      <tr>
+        <th>#</th>
+        <th>Profile Photo</th>
+        <th>Name</th>
+        <th>Favorites</th>
+        <th> </th>
+        <th> Details </th>
+      </tr>
+    </thead>
+    <tbody>
+                                    <!--<td><img id = "party_img" ng-src = "{{ data1.party == 'R' ? 'r.png' : 'd.png'}}"> </img></td>
+                                    <td>{{data1.first_name}}  {{data1.last_name}}</td>
+                                    <td><img  id = "chamber_img" ng-src = "{{ data1.chamber == 'house' ? 'h.png' : 's.svg'}}"> </img> {{data1.chamber}}</td>
+                                    <td>District  {{data1.district}}</td>-->
+                                    <tr ng-repeat="data1 in userID"> 
+                                   <!-- <tr dir-paginate=" data1 in userID | itemsPerPage:10">-->
+                                    <td>
+                                      
+                                     {{$index + 1}}
+
+                                    </td>
+                                    <td><img src= "{{data1.picture.data.url}}" alt="xyz" style="width:30px;height: 30px"></img> </td>
+                                    <td>{{data1.name}}</td>
+                                    <td> <button id="favStar_Users" type="button" ng-click="addtostorage(data1.id,data1.name,data1.picture.data.url)" class="btn btn-default" aria-label="Left Align">
+                <span ng-class="yellow(data1.id)" class="glyphicon"></span>
+                                   </button>
+                                    </td>
+                                    <td><td> <button type="button"  ng-click="retrievePageDetails(data1.id);myValue=true" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-chevron-right"></span></td>
+
+                                   
+                                    
+                                  </tr>
+                                </tbody>
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--end of users-->
+<!--Pages-->
+<div id="Pages" class="tabcontent" ng-model="pagedata" ng-show="state.Pages_table;alltables;" ng-hide="something">
+  
+  <div class="container-fluid"> 
+  <div id = "Pages_table"  > 
+    <div class="table-responsive">              
+  <table class="table" id="table2">
+    <thead> 
+      <tr>
+        <th>#</th>
+        <th>Profile Photo</th>
+        <th>Name</th>
+        <th>Favorites</th>
+        <th> </th>
+        <th> Details </th>
+      </tr>
+    </thead>
+    
+     <tbody>
+                                  
+                                    <tr ng-repeat="data1 in userID"> 
+                                   
+                                    <td>
+                                      
+                                     {{$index + 1}}
+
+                                    </td>
+                                    <td><img src= "{{data1.picture.data.url}}" alt="xyz" style="width:30px;height: 30px"></img> </td>
+                                   <!-- <td> {{data1.id}} </td>-->
+                                    <td>{{data1.name}}</td>
+                                  <td> <button id="favStar_Users" type="button" ng-click="addtostorage(data1.id,data1.name,data1.picture.data.url)" class="btn btn-default" aria-label="Left Align">
+                <span ng-class="yellow(data1.id)" class="glyphicon"></span>
+                                   </button></td>
+                                    <td><td> <button type="button" ng-click="retrievePageDetails(data1.id)" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-chevron-right"></span></td>
+
+                                   
+                                    
+       
+                                  </tr>
+                                </tbody> 
+                                </table>
+                                </div> </div>
+</div>
+</div>
+<!-- end of Pages-->
+<!--events table-->
+<div id="Events" class="tabcontent" ng-show="state.Events_table;alltables" ng-hide="something">
+  
+ <div class="container-fluid">    
+   <div class="table-responsive">           
+  <table id="xyx_events" class="table" id="table3">
+    <thead> 
+      <tr>
+        <th>#</th>
+        <th>Profile Photo</th>
+        <th>Name</th>
+        <th>Favorites</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+   
+<tbody>
+                                  
+                                    <tr ng-repeat="data1 in userID"> 
+                                   
+                                    <td>
+                                      
+                                     {{$index + 1}}
+
+                                    </td>
+                                    <td><img src= "{{data1.picture.data.url}}" alt="xyz" style="width:30px;height: 30px"></img> </td>
+                                    <td>{{data1.name}}</td>
+                                   <td> <button id="favStar_Users" type="button" ng-click="addtostorage(data1.id,data1.name,data1.picture.data.url)" class="btn btn-default" aria-label="Left Align">
+                <span ng-class="yellow(data1.id)" class="glyphicon"></span>
+                                   </button></td>
+
+                                    <td> <button type="button" ng-click="retrievePageDetails(data1.id)"  class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-chevron-right"></span></button></td>
+
+                                   
+                                    
+       
+                                  </tr>
+                                </tbody> 
+
+  
+  </table>
+  </div> 
+</div>
+</div>
+<!--events table-->
+<!--Places-->
+<div id="Places" class="tabcontent" ng-show="state.Places_table;alltables" ng-hide="something">
+  
+ <div class="container-fluid">    
+   <div class="table-responsive">           
+  <table class="table" id="table4">
+    <thead> 
+      <tr>
+        <th>#</th>
+        <th>Profile Photo</th>
+        <th>Name</th>
+        <th>Favorites</th>
+        <th> </th>
+        <th> Details </th>
+      </tr>
+    </thead>
+    <tbody>
+                                  
+                                    <tr ng-repeat="data1 in userID"> 
+                                   
+                                    <td>
+                                      
+                                     {{$index + 1}}
+
+                                    </td>
+                                    <td><img src= "{{data1.picture.data.url}}" alt="xyz" style="width:30px;height: 30px"></img> </td>
+                                    <td>{{data1.name}}</td>
+                                    <td> <button id="favStar_Users" type="button" ng-click="addtostorage(data1.id,data1.name,data1.picture.data.url)" class="btn btn-default" aria-label="Left Align">
+                <span ng-class="yellow(data1.id)" class="glyphicon"></span>
+                                   </button></td>
+                                    <td><td> <button type="button" ng-click="retrievePageDetails(data1.id)"  class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-chevron-right"></span></td>
+
+                                   
+                                    
+       
+                                  </tr>
+                                </tbody>
+  
+  </table>
+</div>
+</div>
+</div>
+<!--end of places-->
+<div id="Groups" class="tabcontent" ng-show="state.Groups_table;alltables" ng-hide="something">
+  
+<div class="container-fluid"> 
+  <div class="table-responsive">              
+  <table class="table" id="table5">
+    <thead> 
+      <tr>
+        <th>#</th>
+        <th>Profile Photo</th>
+        <th>Name</th>
+        <th>Favorites</th>
+        <th> </th>
+        <th> Details </th>
+      </tr>
+    </thead>
+    <tbody>
+                                  
+                                    <tr ng-repeat="data1 in userID"> 
+                                   
+                                    <td>
+                                      
+                                     {{$index + 1}}
+
+                                    </td>
+                                    <td><img src= "{{data1.picture.data.url}}" alt="xyz" style="width:30px;height: 30px"></img> </td>
+                                    <td>{{data1.name}}</td>
+                                   <td> <button id="favStar_Users" type="button" ng-click="addtostorage(data1.id,data1.name,data1.picture.data.url)" class="btn btn-default" aria-label="Left Align">
+                <span ng-class="yellow(data1.id)" class="glyphicon"></span>
+                                   </button></td>
+                                    <td><td> <button type="button" ng-click="retrievePageDetails(data1.id)"  class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-chevron-right"></span></td>
+
+                                   
+                                    
+       
+                                  </tr>
+                                </tbody>
+  
+  </table>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+<div>
+<nav aria-label="..." id="nextandprev" ng-show="nextandprev">
+  <ul class="pager">
+    <li><a href="javascript:void(0);"  style="color: black;border-radius: 3px" ng-show="showprevious" ng-click="showprev()">Previous</a></li>
+
+    <li><a  style="color: black;border-radius: 3px" ng-click="shownext()" ng-show="showthenext">Next</a></li>
+  </ul>
+</nav>
+</div>  
+
+
+
+
+
+<div id="Favorites" class="tabcontent" ng-show="state.Fav_table;alltables  " ng-hide="something" >
+  
+  <div class="container-fluid">
+    <div class="table-responsive">               
+  <table class="table">
+    <thead> 
+      <tr>
+        <th>#</th>
+        <th>Profile Photo</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Favorites</th>
+        <th>Details </th>
+      </tr>
+    </thead>
+  <tbody>
+      
+                                  
+                                    <tr ng-repeat="data3 in local_Array track by $index" ng-show="data3"> 
+                                   
+                                    <td>
+                                      
+                                     {{$index + 1}}
+
+                                    </td>
+                                    
+                                    <td><img src= "{{data3.url}}" alt="xyz" style="width:30px;height: 30px"></img> </td> 
+                                    <td>
+                                    {{data3.name}}
+                                    </td>
+                                    <td>
+                                    {{data3.type}}
+                                    </td>
+                                    <td>  <button type="button"  ng-click="delete_item_from_storage1(data3.id)" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-trash"></span></button> </td>
+                                    <td> <button type="button" ng-click="retrievePageDetails(data3.id)"  class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-chevron-right"></span></td>
+                                    <!-- <td> <button type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-star-empty"></span>
+                                   </button>
+                                    </td>
+                                    <td> <button type="button" ng-click="retrievePageDetails(data1.id)"  class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-chevron-right"></span></td>
+ -->
+                                   
+                                    
+       
+                                  </tr>
+                                 <!--  <tr><div ng-if="local_storage_length==0" class="panel panel-default">
+          <div class="panel-body" style="background-color: lightgoldenrodyellow;margin-top:">No Favorites found</div>
+      </div></tr> -->
+                                </tbody>
+  
+  </table>
+
+  <table>
+   <tr><div ng-if="local_storage_length==0" class="panel panel-default">
+          <div class="panel-body" style="background-color: lightgoldenrodyellow">No Favorites found</div>
+      </div></tr>
+  </table>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid {{detailsShow}}"  id="invisiblediv" ng-show="showAlbum" class='animate-hide'  ng-hide="myValue">
+ <!--main hidden div-->
+<div class="row container-fluid">
+<div class="col-md-8">
+<button type="button" class="btn btn-default btn-sm" id="backbutton" ng-click="onback()">
+<span class="glyphicon glyphicon-chevron-left"></span> Back
+</button>
+</div>
+
+<!-- <button type="button" class="btn btn-default" style="float:right; background: url(http://cs-server.usc.edu:45678/hw/hw8/images/facebook.png);" aria-label="Right Align" ng-click="share(main_data.id,main_data.name,main_data.picture.data.url)">
+</button> -->
+<div>
+<div class="col-md-2">
+<button type="button" class="btn btn-default" style="float: right"  ng-click="addtostorage1(main_data.id,main_data.name,main_data.picture.data.url)">
+<span class="glyphicon" ng-class="yellow(main_data.id)"></span> </button>
+</div>
+
+<div class="col-md-2">
+<input type="image" src="http://cs-server.usc.edu:45678/hw/hw8/images/facebook.png" alt="Submit" width="35" height="35" ng-click="share(main_data.id,main_data.name,main_data.picture.data.url)">
+</div>
+</div>
+<br/>
+<br/>
+</div>
+
+<div  id="albumhide" class="col-md-6"> <!--albums div -->
+        <div>
+  
+  <div class="panel panel-default">
+       <div class="panel-heading">Albums</div>
+             <div class="panel-body">
+        
+
+<!--progress bar-->
+          <div class="container col-md-7" id="progress_bar" ng-show="mini_prog">
+<div class="progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
+    <span class="sr-only">45% Complete</span>
+  </div>
+</div>
+</div>  <!--end of progress bar-->         
+          
+<div ng-if="albums==null" class="panel panel-default" ng-show="details_table">
+<div class="panel-body" style="background-color: lightgoldenrodyellow">No Albums found</div>
+</div>
+
+
+
+
+                  <div class="panel-group" id="accordion" ng-show="details_table">
+                  
+                  <div ng-repeat="data3 in albums">
+  
+                         <div class="panel panel-default">
+                             <div class="panel-heading">
+                                 <h4 class="panel-title">
+                                 <a data-toggle="collapse"  href="#{{data3.id}}">{{data3.name}}</a>
+                                 </h4>
+                             </div><!--album name -->
+                             <div id="{{data3.id}}" class="panel-collapse collapse ">
+                                 <div class="panel-body">
+                                  <div ng-repeat="x in data3.photos.data">
+                                    <img ng-src="https://graph.facebook.com/v2.8/{{x.id}}/picture?type(large)&access_token=EAAQZCeIgzfaMBAHnCmhB1Vlc7pObU1N6NcRykuWjcmKCsQifMcAnMmLRxVPINfunB2xOuJxvKqU63JZCUtDcYHvBRrpodLZB1aZCuqVpUhFMzcrbNj5vbnuE1qaZBudtywlIBrVSTXnZBGfT0ZAoM61K5Fuv53tjLIZD" class="img-responsive center-block img-rounded" />
+                                  </div>
+
+
+                                 </div>
+                            </div> <!--pictures-->
+                         </div> <!--accordion elements/panel-->
+                         
+                      </div>  
+   
+  
+                  </div> <!--accordion class--> 
+            </div><!--main panel body-->
+ </div> <!--main panel-->
+</div> <!--container-->
+
+</div> <!-- end of albums div -->
+
+
+
+<div class="col-md-6" id="posthide"> <!--posts div-->
+
+     <div class="panel panel-default"> <!--panel default-->
+
+          <div class="panel-heading">Posts</div>
+          <br/>
+          <div class="panel-body">
+
+                 <!--progress bar-->
+        <div class="container col-md-7" id="progress_bar" ng-show="mini_prog">
+        <div class="progress" >
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
+        <span class="sr-only">45% Complete</span>
+        </div>
+        </div>
+        </div>  <!--end of progress bar-->  
+
+
+    <div ng-if="posts==null" class="panel panel-default" ng-show="details_table">
+<div class="panel-body" style="background-color: lightgoldenrodyellow">No Posts found</div>
+</div>
+
+
+
+              <div class="panel-group" ng-show="details_table"> <!--panel group-->
+
+                    <div ng-repeat="data2 in posts">  <!--ng-repeat-->
+                        <div class="panel panel-default"> <!--panel default-->
+                             <div ng-if="data2.message!=null" class="panel-body"><!--panel body-->
+                                  <div>
+                                  <img src= "{{main_data.picture.data.url}}" alt="xyz" style="width:40px;height: 40px;float: left"></img>
+                                  
+                                  <b style="margin-left: 10px">{{main_data.name}}</b>
+                                  <br/>
+                                  <p style="color: grey;margin-left:4em">{{data2.created_time.substring(0,data2.created_time.indexOf("+")).replace("T"," ")}}</p>
+                                  
+                                  {{data2.message}}
+                                  </div>
+                             </div> <!--panel body--> 
+                                   <div ng-if="data2.message==null" class="panel-body">
+                                  <div>
+                                  <img src= "{{main_data.picture.data.url}}" alt="xyz" style="width:40px;height: 40px;float: left"></img>
+                                  
+                                  <b style="margin-left: 10px">{{main_data.name}}</b>
+                                  <br/>
+                                  <p style="color: grey;margin-right: 30px">{{data2.created_time.substring(0,data2.created_time.indexOf("+")).replace("T"," ")}}</p>
+                                  
+                                  {{data2.story}}
+                                  </div>
+                             </div> <!--panel body--> 
+
+
+                       </div> <!--panel default-->
+                       <br/>
+                    </div> <!--ng-repeat-->
+                 </div>
+
+
+             <!--end of panel group-->
+    </div> <!--end of panel default--> 
+ 
+</div> <!--end of posts div-->
+</div> <!--end of main-->
+</div><!--invisible div-->
+
+
+
+<!-- <div class="col-md-6" id="albumhide1"> 
+        <div class="container">
+  
+  <div class="panel panel-default" style="width: 600px">
+       <div class="panel-heading">Albums</div>
+             <div class="panel-body">
+                 
+             <p>NO ALBUMS FOUND</p>
+                        
+            </div><main panel body
+ </div> 
+</div> 
+
+</div> 
+
+<div class="col-md-6" id="postshide1"> 
+        <div class="container">
+  
+  <div class="panel panel-default" style="width: 600px">
+       <div class="panel-heading">POSTS</div>
+             <div class="panel-body">
+                 
+             <p>NO POSTS FOUND</p>
+                        
+            </div>
+ </div> 
+</div> 
+
+</div> -->
+
+
+
+
+
+</body>
+
