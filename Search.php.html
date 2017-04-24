@@ -1,0 +1,232 @@
+
+<!-- saved from url=(0089)http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&hkeyword=usc&htype=Pages -->
+<html class="gr__cs-server_usc_edu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+
+ function clearEle() {
+        document.getElementById("div1").style.visibility = "hidden";
+        document.getElementById("keyword").setAttribute("value", "");
+        document.getElementById("fb").selectedIndex = "0";
+      if (document.getElementById('fb_user_table')) {
+           document.getElementById('fb_user_table').style.display = "none";
+         }
+      if (document.getElementById('alt')) {
+           document.getElementById('alt').style.display = "none"; }
+      
+      if (document.getElementById('fb_user_table1')) {
+           document.getElementById('fb_user_table1').style.display = "none";
+         }
+      if (document.getElementById('alt1')) {
+           document.getElementById('alt1').style.display = "none"; }
+      if (document.getElementById('fb_user_table2')) {
+           document.getElementById('fb_user_table2').style.display = "none";
+         }
+      if (document.getElementById('alt2')) {
+           document.getElementById('alt2').style.display = "none"; }
+      if (document.getElementById('fb_user_table5')) {
+           document.getElementById('fb_user_table5').style.display = "none";
+         }
+      if (document.getElementById('alt5')) {
+           document.getElementById('alt5').style.display = "none"; }
+      
+      }
+      function  displayrawdetails(id,keyword,type,location,distance)
+      {
+      	 clearEle();
+         console.log(id);
+         console.log(keyword);
+         console.log(type);
+         console.log(distance);
+         console.log(location);
+         getID(id,keyword,type,location,distance)
+      } 
+      function getID(id, key, type, location, distance) {
+        var method = "get"; // Set method to post by default if not specified.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", "/Search.php");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "hidval");
+        hiddenField.setAttribute("value", id);
+        hiddenField.setAttribute("id","userid");
+        var hiddenField1 = document.createElement("input");
+        hiddenField1.setAttribute("type", "hidden");
+        hiddenField1.setAttribute("name", "hkeyword");
+        hiddenField1.setAttribute("value", key);
+        hiddenField1.setAttribute("id","keyword");
+        var hiddenField2 = document.createElement("input");
+        hiddenField2.setAttribute("type", "hidden");
+        hiddenField2.setAttribute("name", "htype");
+        hiddenField2.setAttribute("value", type);
+        hiddenField2.setAttribute("id","type");
+        if (type == "place") {
+            var hiddenField3 = document.createElement("input");
+            hiddenField3.setAttribute("type", "hidden");
+            hiddenField3.setAttribute("name", "hloc");
+            hiddenField3.setAttribute("value", location);
+            hiddenField3.setAttribute("id","location");
+            var hiddenField4 = document.createElement("input");
+            hiddenField4.setAttribute("type", "hidden");
+            hiddenField4.setAttribute("name", "hdis");
+            hiddenField4.setAttribute("value", distance);
+            hiddenField4.setAttribute("id","distance");
+            form.appendChild(hiddenField3);
+            form.appendChild(hiddenField4);
+
+        }
+        form.appendChild(hiddenField);
+        form.appendChild(hiddenField1);
+        form.appendChild(hiddenField2);
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+
+function showfield(name){
+  if(name=='Places'){
+  		document.getElementById('div1').innerHTML='';
+      document.getElementById('div1').innerHTML='Location<input type= "text" id= "location" name= "location" value="">  Distance(meters)<input type= "text" id= "distance" name= "distance" value="">';
+  		document.getElementById('div1').style.visibility='visible';
+  	}
+  else document.getElementById('div1').innerHTML='';
+}
+</script>
+</head><body style="text-align: left" data-gr-c-s-loaded="true">
+<form name="myForm" id="inputForm" method="POST" action="http://cs-server.usc.edu:23680/Search.php">
+<div align="center" style="width:560px;border:1px  solid black; margin:0 auto; background: whitesmoke;height: 190px ;text-align:left">
+<p align="center" style="font-size:22px"> <i>Facebook Search </i></p>
+<hr style="width:95%">
+<label>Keyword <input id="keyword" type="text" name="keyword" required="required" oninvalid="this.reportValidity(&#39;This field cannot be left empty&#39;)" value=""></label><br>
+<label for="Facebook search">Type:  </label>
+<select id="fb" name="fb" onchange="showfield(this.options[this.selectedIndex].value)" style="margin-left: 24px">
+<option selected="selected" value="Users">Users</option>
+<option value="Pages">Pages</option>
+<option value="Events">Events</option>
+<option value="Groups">Groups</option>
+<option value="Places">Places</option>
+</select>
+<div id="div1" style="height:auto; position:absolute;"></div>
+<br>
+<br>
+<br>
+<input type="submit" id="submit" value="Search" name="submit" style="margin-left: 60px">
+<input type="reset" value="Clear" onclick="clearEle(); return false;">
+</div>
+</form>
+
+<div id="albumdiv">
+</div>
+
+  
+  <table id="displaytable" border="2px" align="center" style="border-collapse: collapse;background: whitesmoke;">
+   
+        
+          <tbody><tr>
+          <td width="600px" style="text-align:left">
+              
+             <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> Timeline Photos </a>
+             <a href="./Search.php_files/17156071_1485452024812578_5193763168027135501_n.jpg"><img style="cursor: pointer" src="./Search.php_files/17156071_1485452024812578_5193763168027135501_n.jpg" alt="none" height="20"></a>
+             <a href="./Search.php_files/16864352_1473137296044051_8988313534873566306_n.jpg"><img style="cursor: pointer" src="./Search.php_files/16864352_1473137296044051_8988313534873566306_n.jpg" alt="none" height="20"></a>
+
+          </td>
+          </tr>
+         
+          <tr>
+          <td width="600px" style="text-align:left">
+              
+             <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> Stem Cell Day of Discovery at USC Health Sciences Campus </a>
+             <a href="./Search.php_files/16508358_1456199354404512_2718016290597062250_n.jpg"><img style="cursor: pointer" src="./Search.php_files/16508358_1456199354404512_2718016290597062250_n.jpg" alt="none" height="20"></a>
+             <a href="./Search.php_files/16427561_1456199081071206_5929451143490353953_n.jpg"><img style="cursor: pointer" src="./Search.php_files/16427561_1456199081071206_5929451143490353953_n.jpg" alt="none" height="20"></a>
+
+          </td>
+          </tr>
+         
+          <tr>
+          <td width="600px" style="text-align:left">
+              
+             <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> Cover Photos </a>
+             <a href="./Search.php_files/15894257_1421754101182371_7248206473538558961_n.jpg"><img style="cursor: pointer" src="./Search.php_files/15894257_1421754101182371_7248206473538558961_n.jpg" alt="none" height="20"></a>
+             <a href="./Search.php_files/15202510_1376868012337647_1134125730224756991_n.jpg"><img style="cursor: pointer" src="./Search.php_files/15202510_1376868012337647_1134125730224756991_n.jpg" alt="none" height="20"></a>
+
+          </td>
+          </tr>
+         
+          <tr>
+          <td width="600px" style="text-align:left">
+              
+             <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> Untitled Album </a>
+             <a href="./Search.php_files/14713737_1338901982800917_2655486917229398461_n.png"><img style="cursor: pointer" src="./Search.php_files/14713737_1338901982800917_2655486917229398461_n.png" alt="none" height="20"></a>
+             <a href="./Search.php_files/11244715_1003216549702797_4373935598866064185_n.jpg"><img style="cursor: pointer" src="./Search.php_files/11244715_1003216549702797_4373935598866064185_n.jpg" alt="none" height="20"></a>
+
+          </td>
+          </tr>
+         
+          <tr>
+          <td width="600px" style="text-align:left">
+              
+             <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> USC Commencement 2016 </a>
+             <a href="./Search.php_files/13174050_1204423316248785_8051782724002837075_n.jpg"><img style="cursor: pointer" src="./Search.php_files/13174050_1204423316248785_8051782724002837075_n.jpg" alt="none" height="20"></a>
+             <a href="./Search.php_files/13221477_1204423306248786_1098948065632769871_n.jpg"><img style="cursor: pointer" src="./Search.php_files/13221477_1204423306248786_1098948065632769871_n.jpg" alt="none" height="20"></a>
+
+          </td>
+          </tr>
+           
+  </tbody></table>
+  <br>
+  <br>
+  <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> USC will be doing the methodology, the survey and statistical analysis, a different approach from years past when LAHSA divvied up the work among multiple organizations. </a><table id="poststable" border="2px" align="center" style="border-collapse: collapse;background: whitesmoke;&gt;
+   
+        
+          &lt;tr&gt;
+          &lt;td width=" 600px"="">
+              
+             
+
+          
+          
+         
+          <tbody><tr>
+          <td width="600px" style="text-align:left">
+              
+             <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> Live Campus Tour
+
+Comment where you're watching from. </a>
+
+          </td>
+          </tr>
+         
+          <tr>
+          <td width="600px" style="text-align:left">
+              
+             <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> Trojan women #FightOn!
+
+Registration is still open for the 2017 USC Women's Conference hosted by the USC Alumni Association. </a>
+
+          </td>
+          </tr>
+         
+          <tr>
+          <td width="600px" style="text-align:left">
+              
+             <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> USC alumna Jessica Saba knows that girls can run the world - if they're given the opportunity to rise. </a>
+
+          </td>
+          </tr>
+         
+          <tr>
+          <td width="600px" style="text-align:left">
+              
+             <a href="http://cs-server.usc.edu:23680/Search.php?hidval=134972803193847&amp;hkeyword=usc&amp;htype=Pages#" target="_blank"> Donald Webber Jr. '08 is done patiently waitin' - as he steps into the title role in the Broadway sensation Hamilton: An American Musical! </a>
+
+          </td>
+          </tr>
+           
+  </tbody></table>
+      
+
+
+
+
+
+</body></html>
